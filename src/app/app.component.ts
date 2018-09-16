@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpServerService } from './http-server.service';
 
 @Component({
   selector: 'app-root',
@@ -25,6 +26,21 @@ export class AppComponent {
       id: this.generateId()
     });
   }
+
+  constructor(private httpServerService: HttpServerService) {}
+
+  public onSave() {
+    this.httpServerService.storeServers(this.servers)
+      .subscribe(
+        (response) => {
+          console.log(response);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+  }
+
   private generateId() {
     return Math.round(Math.random() * 10000);
   }
