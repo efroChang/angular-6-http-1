@@ -21,7 +21,7 @@ export class AppComponent {
     }
   ];
 
-  onAddServers(name: string) {
+  onAddServer(name: string) {
     this.servers.push({
       name: name,
       capacity: 50,

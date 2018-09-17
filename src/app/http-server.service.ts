@@ -8,7 +8,8 @@ export class HttpServerService {
     constructor(private http: Http) {}
 
     storeServers(servers: Array<any>) {
-        return this.http.post(this.url, servers);
+        // return this.http.post(this.url, servers);
+        return this.http.put(this.url, servers);    // Use PUT, so it won't keep adding data
     }
 
     fetchServers() {
