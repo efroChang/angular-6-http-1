@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { Http } from "@angular/http";
+import { Http, Response } from "@angular/http";
+import 'rxjs/Rx';
 
 @Injectable()
 export class HttpServerService {
@@ -13,6 +14,12 @@ export class HttpServerService {
     }
 
     fetchServers() {
-        return this.http.get(this.url);
+        return this.http.get(this.url)
+            .map(
+                (response: Response) => {
+                    let jsonData = response.json();
+                    return jsonData;
+                }
+            );
     }
 }
