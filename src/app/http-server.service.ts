@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Http, Response } from "@angular/http";
 import 'rxjs/Rx';
+import { Observable } from "rxjs/Rx";
 
 @Injectable()
 export class HttpServerService {
@@ -19,6 +20,20 @@ export class HttpServerService {
                 (response: Response) => {
                     let jsonData = response.json();
                     return jsonData;
+                }
+            )
+            .catch(
+                (error: Response) => {
+                    return Observable.throwError('Something went wrong');
+                }
+            );
+    }
+
+    fetchMovieName() {
+        return this.http.get('https://efro-ng-http.firebaseio.com/MovieName.json')
+            .map(
+                (response: Response) => {
+                    return response.json();
                 }
             );
     }

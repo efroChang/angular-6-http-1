@@ -8,6 +8,9 @@ import { Response } from '@angular/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
+  movieName = this.httpServerService.fetchMovieName();    // [KEY]: This is an Observable
+
   servers = [
     {
       name: 'Testserver',
