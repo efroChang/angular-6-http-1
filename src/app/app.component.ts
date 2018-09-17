@@ -46,7 +46,7 @@ export class AppComponent {
   public onGet() {
     this.httpServerService.fetchServers()
       .subscribe(
-        (servers: Array<any>) => console.log(servers),
+        (serversJson: Array<any>) => this.servers = serversJson,
         (error) => console.log(error)
       );
   }
