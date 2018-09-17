@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpServerService } from './http-server.service';
+import { Response } from '@angular/http';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +20,8 @@ export class AppComponent {
       id: this.generateId()
     }
   ];
-  onAddServer(name: string) {
+
+  onAddServers(name: string) {
     this.servers.push({
       name: name,
       capacity: 50,
@@ -38,6 +40,14 @@ export class AppComponent {
         (error) => {
           console.log(error);
         }
+      );
+  }
+
+  public onGet() {
+    this.httpServerService.fetchServers()
+      .subscribe(
+        (response: Response) => console.log(response.json()),
+        (error) => console.log(error)
       );
   }
 

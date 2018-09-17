@@ -3,9 +3,15 @@ import { Http } from "@angular/http";
 
 @Injectable()
 export class HttpServerService {
+    private url: string = 'https://efro-ng-http.firebaseio.com/myData.json';
+
     constructor(private http: Http) {}
 
     storeServers(servers: Array<any>) {
-        return this.http.post('https://efro-ng-http.firebaseio.com/myData.json', servers);
+        return this.http.post(this.url, servers);
+    }
+
+    fetchServers() {
+        return this.http.get(this.url);
     }
 }
